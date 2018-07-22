@@ -1,0 +1,28 @@
+<p>
+  <b>Fecha:</b>
+  <%= @movimiento.fecha %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @movimiento.desc %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <%= @movimiento.estado.nombre %>
+</p>
+
+<p>
+  <b>Rodeo:</b>
+  <%= @movimiento.rodeo.nombre %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @movimiento.category.nombre %>
+</p>
+
+
+<%= link_to 'Edit', edit_movimiento_path(@movimiento) %> |
+<%= link_to 'Back', movimientos_path %>

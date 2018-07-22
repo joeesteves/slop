@@ -1,0 +1,41 @@
+<h1>ANIMALES</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+
+<table style="width:100%">
+<thead>
+  <tr>
+    <th>RP</th>
+    <th>ACTIVO</th>
+    <th>NOMBRE</th>
+    <th>DESCRIPCIÓN</th>
+  </tr>
+</thead>
+<tbody>
+<% @animals.each do |animal| %>
+  <tr>
+    <td><%= animal.rp %></td>
+    <td><%if animal.activo == true%>SI<% else %>NO<%end%></td>
+    <td><%= animal.nombre %></td>
+    <td><%= animal.desc %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+
+			<center><a href="<%= new_animal_path">
+		   <input type="button" value="CREAR NUEVO ANIMAL" class="button"/>
+			</a></center>
+		</div> 
+	</div>
+</div>
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-03-11
+  desc: MyString
+  animal: 
+  estado: 
+  rodeo: 
+  category: 
+
+two:
+  fecha: 2013-03-11
+  desc: MyString
+  animal: 
+  estado: 
+  rodeo: 
+  category: 

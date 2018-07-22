@@ -1,0 +1,40 @@
+<h1>TIPOS DE CATEGORIAS</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+				<thead>
+	<tr>
+		<th style="width:15%">NOMBRE</th>
+		<th style="width:70%">DESCRIPCIÓN</th>
+		<th></th>
+		<th></th>
+	</tr>
+			</thead>
+			<tbody>
+	<% @categorias_tipos.each do |categorias_tipo| %>
+		<tr>
+			<td><%= categorias_tipo.nombre %></td>
+			<td><%= categorias_tipo.desc %></td>
+			<td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_cat_tipo_path(categorias_tipo) %></td>
+			<td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), categorias_tipo, method: :delete, data: { confirm: 'Esta acción es irrecuperable. ¿Esta seguro?' } %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%= new_cat_tipo_path">
+					<input type="button" value="CREAR NUEVO TIPO" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>

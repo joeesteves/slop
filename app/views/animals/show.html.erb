@@ -1,0 +1,23 @@
+<p>
+  <b>Rp:</b>
+  <%= @animal.rp %>
+</p>
+
+<p>
+  <b>Activo:</b>
+  <%= @animal.activo %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @animal.nombre %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @animal.desc %>
+</p>
+
+
+<%= link_to 'Edit', edit_animal_path(@animal) %> |
+<%= link_to 'Back', animals_path %>

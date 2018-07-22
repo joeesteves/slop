@@ -1,0 +1,41 @@
+<h1>ACCIONES</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+				<thead>
+  <tr>
+    <th>CODIGO</th>
+    <th>NOMBRE</th>
+ 
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+<% @tipo_accs.each do |tipo_acc| %>
+  <tr onclick="window.location.href='<%= edit_tipo_acc_path(tipo_acc)%>'">
+    <td><%= tipo_acc.codigo %></td>
+    <td><%= tipo_acc.nombre %></td>
+    <td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_tipo_acc_path(tipo_acc) %></td>
+    <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), tipo_acc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%= new_tipo_acc_path %>">
+					<input type="button" value="CREAR NUEVA ACCION" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>
+

@@ -1,0 +1,2 @@
+module CatfiscalesHelper
+end

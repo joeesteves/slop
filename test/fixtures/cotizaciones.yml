@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-10-03
+  cotizacion: 9.99
+  moneda_id: 
+
+two:
+  fecha: 2013-10-03
+  cotizacion: 9.99
+  moneda_id: 

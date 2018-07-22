@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-09-16
+  titulo: MyString
+  desc: MyText
+  estado: 1
+  establecimiento_id: 
+
+two:
+  fecha: 2013-09-16
+  titulo: MyString
+  desc: MyText
+  estado: 1
+  establecimiento_id: 

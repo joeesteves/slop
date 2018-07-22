@@ -1,0 +1,58 @@
+<%= form_for(@tarea) do |f| %>
+  <% if @tarea.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tarea.errors.count, "error") %> prohibited this tarea from being saved:</h2>
+
+      <ul>
+      <% @tarea.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="small-3 columns">  
+		<span class="prefix radius">FECHA </span>
+	</div>
+	<div class="small-9 columns">
+		<input type="date" id="fecha" name="tarea[fecha]" tabindex="1" value="<%= @tarea.fecha%>" /></p>
+  </div>
+	<div class="small-3 columns">  
+		<span class="prefix radius">TÍTULO</span>
+	</div>
+	<div class="small-9 columns">  
+		<%= f.text_field :titulo %>
+ 	</div>
+	
+	<div class="small-12 columns">  
+		<span class="label" style="width:100%">DESCRIPCIÓN</span>
+ 	</div>
+	<div class="small-12 columns">  
+		 <%= f.text_area :desc, :class => "tinymce", :rows => 40, :cols => 120 %>
+ 	</div>
+    
+    
+ 
+  <%= tinymce %>
+  
+   <% @estados = [["Pendientes", "0"], ["Ejecución","1"],["Fin","2"]] %>
+ <div class="small-3 columns">  
+		<span class="prefix radius">ESTADO</span>
+	</div>
+	<div class="small-9 columns">  
+	   <%= select_tag "tarea[estado]",  options_for_select(@estados, @tarea.estado) %>
+  
+ 	</div>
+  
+   
+  
+ 	<div class="small-12 columns">  
+    <%= f.submit "GUARDAR", :class => "button", :style => "width:100%" %>
+  
+  
+  
+  
+<% end %>
+</div>
+</div>

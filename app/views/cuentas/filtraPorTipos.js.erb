@@ -1,0 +1,18 @@
+$('body').css('cursor','auto');	
+
+		$('#transaccion_ctaD_id').empty();
+		$('#transaccion_ctaH_id').empty();
+		
+		
+		<% @ctasD.each do |s| %>
+			$('#transaccion_ctaD_id').append(new Option('<%= s.nombre%>','<%= s.id %>' ));
+		<% end %>	
+
+		<% @ctasH.each do |s| %>
+			$('#transaccion_ctaH_id').append(new Option('<%= s.nombre%>','<%= s.id %>' ));
+		<% end %>	
+		
+$('#transaccion_ctaD_id').change()		
+$('#transaccion_ctaH_id').change()
+$('select').trigger("chosen:updated");
+

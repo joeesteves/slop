@@ -1,0 +1,40 @@
+
+	<div class="row">
+		<div class="small-12 columns">
+<div class="panel">
+<%= form_for(@evento) do |f| %>
+  <% if @evento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this evento from being saved:</h2>
+
+      <ul>
+      <% @evento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fecha %><br>
+		<input type="date" id="fecha" name="evento[fecha]" value="<%= @evento.fecha %>" tabindex="1"/>
+  </div>
+  <div class="field">
+    <%= f.label :registro %><br>
+    <%= f.text_field :registro %>
+  </div>
+  <div class="field">
+    <%= f.label :desc %><br>
+    <%= f.text_area :desc %>
+  </div>
+  <div class="field">
+    <%= f.label :eventotipo_id %>
+		<%= f.collection_select(:eventotipo_id, Eventotipo.all, :id, :nombre,{}, {}) %>
+	  </div>
+  <div class="actions">
+    <%= f.submit "ENVIAR" %>
+  </div>
+<% end %>
+	</div>
+</div>
+</div>

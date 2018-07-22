@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<input type="hidden" id="accion" value="show" />
+<p>
+  <strong>Fecha:</strong>
+  <%= @transaccion.fecha %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @transaccion.transacciontipo.id %>
+</p>
+
+<p>
+  <strong>Importe:</strong>
+  <%= @transaccion.importe %>
+</p>
+
+<p>
+  <strong>Cuotas:</strong>
+  <%= @transaccion.cuotascantidad %>
+</p>
+
+<%= link_to 'Edit', edit_transaccion_path(@transaccion) %> |
+<%= link_to 'Back', transacciones_path %>

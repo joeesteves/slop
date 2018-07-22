@@ -1,0 +1,151 @@
+<div class="row">
+	<div class="small-12 columns">
+		<div class="panel">
+<%= form_for(@ebv) do |f| %>
+  <% if @ebv.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ebv.errors.count, "error") %> prohibited this ebv from being saved:</h2>
+
+      <ul>
+      <% @ebv.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :nacdird %><br>
+    <%= f.text_field :nacdird %>
+  </div>
+  <div class="field">
+    <%= f.label :nacdirp %><br>
+    <%= f.text_field :nacdirp %>
+  </div>
+  <div class="field">
+    <%= f.label :nacmatd %><br>
+    <%= f.text_field :nacmatd %>
+  </div>
+  <div class="field">
+    <%= f.label :nacmatp %><br>
+    <%= f.text_field :nacmatp %>
+  </div>
+  <div class="field">
+    <%= f.label :dttdird %><br>
+    <%= f.text_field :dttdird %>
+  </div>
+  <div class="field">
+    <%= f.label :dttdirp %><br>
+    <%= f.text_field :dttdirp %>
+  </div>
+  <div class="field">
+    <%= f.label :dttmatd %><br>
+    <%= f.text_field :dttmatd %>
+  </div>
+  <div class="field">
+    <%= f.label :dttmatp %><br>
+    <%= f.text_field :dttmatp %>
+  </div>
+  <div class="field">
+    <%= f.label :pasoad %><br>
+    <%= f.text_field :pasoad %>
+  </div>
+  <div class="field">
+    <%= f.label :pesoap %><br>
+    <%= f.text_field :pesoap %>
+  </div>
+  <div class="field">
+    <%= f.label :pesoaymd %><br>
+    <%= f.text_field :pesoaymd %>
+  </div>
+  <div class="field">
+    <%= f.label :pesoaymp %><br>
+    <%= f.text_field :pesoaymp %>
+  </div>
+  <div class="field">
+    <%= f.label :pesoadd %><br>
+    <%= f.text_field :pesoadd %>
+  </div>
+  <div class="field">
+    <%= f.label :pesoadp %><br>
+    <%= f.text_field :pesoadp %>
+  </div>
+  <div class="field">
+    <%= f.label :gdpd %><br>
+    <%= f.text_field :gdpd %>
+  </div>
+  <div class="field">
+    <%= f.label :gdpp %><br>
+    <%= f.text_field :gdpp %>
+  </div>
+  <div class="field">
+    <%= f.label :icad %><br>
+    <%= f.text_field :icad %>
+  </div>
+  <div class="field">
+    <%= f.label :icap %><br>
+    <%= f.text_field :icap %>
+  </div>
+  <div class="field">
+    <%= f.label :consumod %><br>
+    <%= f.text_field :consumod %>
+  </div>
+  <div class="field">
+    <%= f.label :consumop %><br>
+    <%= f.text_field :consumop %>
+  </div>
+  <div class="field">
+    <%= f.label :irfd %><br>
+    <%= f.text_field :irfd %>
+  </div>
+  <div class="field">
+    <%= f.label :irfp %><br>
+    <%= f.text_field :irfp %>
+  </div>
+  <div class="field">
+    <%= f.label :althd %><br>
+    <%= f.text_field :althd %>
+  </div>
+  <div class="field">
+    <%= f.label :althp %><br>
+    <%= f.text_field :althp %>
+  </div>
+  <div class="field">
+    <%= f.label :largod %><br>
+    <%= f.text_field :largod %>
+  </div>
+  <div class="field">
+    <%= f.label :largop %><br>
+    <%= f.text_field :largop %>
+  </div>
+  <div class="field">
+    <%= f.label :ctd %><br>
+    <%= f.text_field :ctd %>
+  </div>
+  <div class="field">
+    <%= f.label :ctp %><br>
+    <%= f.text_field :ctp %>
+  </div>
+  <div class="field">
+    <%= f.label :ced %><br>
+    <%= f.text_field :ced %>
+  </div>
+  <div class="field">
+    <%= f.label :cep %><br>
+    <%= f.text_field :cep %>
+  </div>
+  <div class="field">
+    <%= f.label :animal %><br>
+    <%= f.text_field :animal %>
+  </div>
+  <div class="actions">
+   <%= f.submit "GUARDAR", :class => 'button', :style => 'width:100%' %>
+  </div>
+<% end %>
+</div>
+	</div>
+</div>

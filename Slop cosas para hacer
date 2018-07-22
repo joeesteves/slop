@@ -1,0 +1,30 @@
+1- control de stock... no poder mover mas de lo que hay! ok
+2- planilla de hacienda mensual - ok
+2.1 	cols: s.i categoria estado ingresos {nac, rec, cam cat, ajus +} egresos {muerte, despacho, cam cat, ajus -} s.f
+2.2         cabezas  ok	
+             kg      ok
+             
+             
+3. crear accion > 20 que usan pero solo tienen categoria destino para sanidad, dar y recibir servicio - ok 
+4. LISTO !!! agregar accion nac = 2 el cambio de cat de la madre - ok 
+
+
+abm establecimiento
+relacionar establecimiento con usuarios
+abm plan de cuentas
+
+
+
+5. informe reproductivo
+6. informe productivo
+7. agregar otro circulo disponible . cantidad = cant restante
+
+
+EN MOVIMEINTOS EN ACCIONES DE CON ORIGEN DESTINO AL CAMBIAR LA CATEGORIA ORIGEN CAMBIAR LA CAT DESTINO ok
+
+revisar establecimiento en session. siempre tiene que ser la que se ve en la cabecera- ok
+
+totalizar existencias
+
+
+

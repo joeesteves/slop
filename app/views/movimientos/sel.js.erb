@@ -1,0 +1,134 @@
+$('body').css('cursor','auto');	
+<% if @codAcc %>	
+	$('#codigoAcc').val(<%= @codAcc.codigo %>);	
+	
+	<% if @seleccion %>
+		$(category_id).empty();
+		$(cat_ori).empty();
+		<% @seleccion.each do |s| %>
+			$(category_id).append(new Option('<%= s.nombre%>','<%= s.id %>' ));
+			<% if !@catOri %>
+				$(cat_ori).append(new Option('<%= s.nombre%>','<%= s.id %>' ));
+			<% end %>		
+		<% end %>
+	<% end %>	
+
+	<% if @catOri %>
+		<% @catOri.each do |s| %>
+			$(cat_ori).append(new Option('<%= s.nombre%>','<%= s.id %>' ));
+		<% end %>	
+	<% end %>	
+
+	<% if @estadosOri %>
+		$(est_ori).empty();
+		<% @estadosOri.each do |e| %>
+			$(est_ori).append(new Option('<%= e.nombre%>','<%= e.id %>' ));
+		<% end %>
+	<% end %>
+
+	<% if @estadosDest %>
+		$(estado_id).empty();
+		<% @estadosDest.each do |e| %>
+			$(estado_id).append(new Option('<%= e.nombre%>','<%= e.id %>' ));
+		<% end %>
+	<% end %>
+
+
+	<% if @rodeos %>
+		$(rod_ori).empty();
+		$(rodeo_id).empty();
+		<% @rodeos.each do |e| %>
+			$(rod_ori).append(new Option('<%= e.nombre%>','<%= e.id %>' ));
+			$(rodeo_id).append(new Option('<%= e.nombre%>','<%= e.id %>' ));
+		<% end %>
+	<% end %>
+
+<% if (@usaSel) %>
+			$('#cat_ori').val(<%= @catOriSel %>)
+			$('#rod_ori').val(<%= @rodOriSel %>)
+			$('#est_ori').val(<%= @estOriSel %>)
+			$('#category_id').val(<%= @catSel %>)
+			$('#rodeo_id').val(<%= @rodSel %>)
+			$('#estado_id').val(<%= @estSel %>)
+	<% end %>
+
+	<% if (@codAcc.codigo > 0 && @codAcc.codigo <= 10 && @codAcc.codigo != 2) %>
+		$(accCrea).val(1)
+	<% else %>
+		$(accCrea).val(0)
+	<% end %>
+
+	<% if (@codAcc.codigo < 0	) %>
+		$('#peso').hide();
+	<% else %>
+		$('#peso').show();
+			<% if (@pesoEstandard && @pesoEstandard != '') %>
+				$('#kilos').val(<%=@pesoEstandard%>);
+			<% else %>		
+				$('#kilos').val('');	
+			<% end %>
+	<% end %>
+
+	<% if (@codAcc.codigo == 2 || @codAcc.codigo > 10 || @codAcc.codigo == 0) %>
+		$('#catOrigen').show();
+		$('#divCat').removeClass("small-12 columns");
+		$('#divCat').addClass("small-6 columns");		
+		$('#rodOrigen').show();
+		$('#divRod').removeClass("small-12 columns");
+		$('#divRod').addClass("small-6 columns");			
+		$('#estOrigen').show();
+		$('#divEst').removeClass("small-12 columns");
+		$('#divEst').addClass("small-6 columns");			
+		
+	<% else %>
+		$('#catOrigen').hide();
+		$('#divCat').removeClass("small-6 columns");
+		$('#divCat').addClass("small-12 columns");
+		$('#rodOrigen').hide();
+		$('#divRod').removeClass("small-6 columns");
+		$('#divRod').addClass("small-12 columns");
+		$('#estOrigen').hide();				
+		$('#divEst').removeClass("small-6 columns");
+		$('#divEst').addClass("small-12 columns");
+
+	<% end %>
+
+	<% if (@codAcc.codigo < 0	|| @codAcc.codigo > 10 || @codAcc.codigo == 2) %>
+		<% if @animals %>
+			$('#disponible').empty();
+			$('#rpDisponibles').empty();
+			<% @animales.each do  |i| %>
+				
+				$('#rpDisponibles').append('<div><%= i.rp %></div>');
+			
+			<% end %>
+			$('#rpDisponibles').selectable({filter:'div'});
+			$('#rpSeleccionados').selectable({filter:'div'});
+
+			var animales = parseInt($('#cantidad').val()) + <%= @animals[0].cant %>;
+			if ( $('#op').val() == "edit" ) {
+				$('#disponible').text(animales);
+				$('#disp').val(animales);
+				$('#enviar').removeAttr('disabled');}
+			else {
+				$('#disponible').text('<%= @animals[0].cant %>');
+				$('#disp').val(<%= @animals[0].cant %>); 
+				if ( $('#cantidad').val() > <%= @animals[0].cant %> || $('#cantidad').val() == '') {			
+					$('#enviar').attr('disabled', 'disabled');}
+				else {	
+					$('#enviar').removeAttr('disabled'); 
+				} 
+			}
+		<% end %>
+	<% else %>
+		$('#disponible').text('');
+		$('#disp').val();
+	<% end %>
+	
+	
+	
+
+
+<% end %>
+$('select').trigger("chosen:updated");
+

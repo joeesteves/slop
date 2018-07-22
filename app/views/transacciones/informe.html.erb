@@ -1,0 +1,112 @@
+<% if @fd.nil? && @fh.nil? %>
+	<script>
+		$(function(){
+	
+$('#cierreFiltro').foundation('reveal', 'open')
+		$(this).keyup(function(e) {
+			e.preventDefault();
+			if(e.ctrlKey && e.shiftKey && e.keyCode==70){
+				$('#cierreFiltro').foundation('reveal', 'open')};
+
+});
+	
+	});
+</script>
+<%else %>
+<script>
+	
+$(function(){
+$(this).keyup(function(e) {
+	e.preventDefault();
+	if(e.ctrlKey && e.shiftKey && e.keyCode==70){
+	$('#cierreFiltro').foundation('reveal', 'open')};
+
+});
+	
+		
+	});
+</script>
+
+<% end %>
+
+<div id="cierreFiltro" class="reveal-modal">
+	<%= form_tag(:transacciones_informe, :method => "get") do %>
+		<div class="row collapse">
+			<div class="small-2 columns">
+				<span class="prefix">DESDE</span>
+			</div>
+			<div class="small-10 columns">
+				<input type="date" id="desde" name="desde" value="<%= @fd  %>" tabindex="1"/>
+			</div>
+		</div>
+		<div class="row collapse">
+			<div class="small-2 columns">
+				<span class="prefix">HASTA</span>
+			</div>
+			<div class="small-10 columns">
+				<input type="date" id="hasta" name="hasta" value="<%= @fh %>" tabindex="2"/>
+			</div>
+		</div>
+		<div class="small-12 columns">
+			<input type="submit" value="ARMAR INFORME" class="button" style="width:100%;height:100%" tabindex="3">
+		</div>
+		<a class="close-reveal-modal">&#215;</a>
+	<% end %>
+</div>
+
+
+<div class="row">
+<% @cuentas.each_with_index do |c,i| %>
+
+	<div class="small-3 columns">
+		<div class="panel">
+			
+			<div class="row">		
+				<div class="small-12 columns">
+					<span class="label" style="width:100%"><%= c.nombre %></span>
+
+				</div>
+			</div>	
+<%= form_tag(:transacciones_cerrar, :method => "get") do %>		
+<input type="hidden" value="<%= c.id %>" name="cuota_id"/>	
+<% @cuotas[c.id].each_with_index do |cu,e|%>
+			<div class="row">		
+				<div class="small-12 columns">
+					<input type="checkbox" checked name="cuota[]" value="<%= cu.id %>"><%= cu.desc %></span>
+				</div>
+			</div>	
+<% if e+1 == @cuotas[c.id].length %>
+			<div class="row">		
+				<div class="small-12 columns">
+					<input type="submit" class="small.button" value="Cerrar" style="width:100%">
+				</div>
+			</div>		
+<%end %> <!-- end if -->
+
+<%end %> <!-- end each -->
+<%end %> <!-- end form -->
+
+<% if i+1 == @cuentas.length %>
+	<% (4-((@cuentas.length)%4)).times do |d| %>
+			
+					</div>
+				</div>	
+		<div class="small-3 columns">
+			<div class="panel">
+			
+				<div class="row">		
+					<div class="small-12 columns">
+						<span class="label" style="width:100%">----</span>
+						
+					</div>
+				</div>	
+	<% end %>
+<% end %>
+
+
+
+		</div>
+	</div>
+		
+<%end %>	
+</div>

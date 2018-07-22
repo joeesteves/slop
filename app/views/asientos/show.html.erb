@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @asiento.fecha %>
+</p>
+
+<p>
+  <strong>Debe:</strong>
+  <%= @asiento.debe %>
+</p>
+
+<p>
+  <strong>Haber:</strong>
+  <%= @asiento.haber %>
+</p>
+
+<p>
+  <strong>Cuenta:</strong>
+  <%= @asiento.cuenta %>
+</p>
+
+<p>
+  <strong>Transaccion:</strong>
+  <%= @asiento.transaccion %>
+</p>
+
+<p>
+  <strong>Cuota:</strong>
+  <%= @asiento.cuota %>
+</p>
+
+<%= link_to 'Edit', edit_asiento_path(@asiento) %> |
+<%= link_to 'Back', asientos_path %>

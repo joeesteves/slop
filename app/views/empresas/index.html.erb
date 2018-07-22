@@ -1,0 +1,37 @@
+<h1>EMPRESAS</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+  <thead>
+    <tr>
+      <th>CÓDIGO</th>
+      <th>NOMBRE</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @empresas.each do |empresa| %>
+     	<tr onclick="window.location.href='<%= edit_empresa_path(empresa)%>'">
+        <td><%= empresa.codigo %></td>
+        <td><%= empresa.nombre %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%=new_empresa_path %>">
+					<input type="button" value="CREAR EMPRESA" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>

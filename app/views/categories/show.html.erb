@@ -1,0 +1,18 @@
+<p>
+  <b>NOMBRE:</b>
+  <%= @category.nombre %>
+</p>
+
+<p>
+  <b>DESCRIPCIÓN:</b>
+  <%= @category.desc %>
+</p>
+
+<p>
+  <b>TIPO DE CATEGORIA:</b>
+  <%= @category.catTipo.nombre %>
+</p>
+
+
+<%= link_to 'EDITAR', edit_category_path(@category) %> |
+<%= link_to 'VOLVER', categories_path %>

@@ -1,0 +1,116 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+	// Load the Visualization API and the piechart package.
+google.load('visualization', '1.0', {'packages':['corechart']});
+// Set a callback to run when the Google Visualization API is loaded.
+google.setOnLoadCallback(drawChart);
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart() {
+	// Create the data table.
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', 'Topping');
+	data.addColumn('number', 'Slices');
+	data.addRows([
+
+			<% @consulta.each do |c| %>
+
+				['<%= c.rodeo.nombre %>-<%= c.category.nombre %>-<%= c.estado.nombre %>', <%= c.cant%>],
+
+			<%end %>
+			]);
+	// Set chart options
+	var options = {'title':'COMPOSICIÓN CONSOLIDADA POR CATEGORIAS',
+		'is3D': true,
+		'animation':{'duration': 1000,'easing': 'out'},
+	};
+
+	// Instantiate and draw our chart, passing in some options.
+	var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+	chart.draw(data, options);
+
+	chart.draw(data, options);
+}
+</script>
+
+<h1>EXISTENCIAS POR RODEO (<%= @empresas %> )</h1>
+<div class="row">
+	
+		<div class="small-12 large-12 columns">
+<div class="panel">
+			<table class="notDT" style="width:100%">
+				<tr>
+					<th>RODEO</th>
+					<th>CATEGORIA</th>
+					<th>ESTADO</th>
+					<th>CANTIDAD</th>
+					<th>KG</th>
+					<th>KG/CAB</th>
+					<th>TOTAL</th>
+				</tr>
+				<!-- @filas trae las filas para hacer el rowspan --> 
+				<% ary = Array.new %>
+				<% @filas.each do |r| %>
+					<% ary[r.rodeo_id] = r.fila %>
+				<% end %>	 
+				<% $idLoopAnt = nil %>
+
+				<% @consulta.each_with_index do |c, i| %>
+				<!--	<% if i % 2 == 0 %> 
+						<% @s = 'style=background-color:black; font-color:white' %>
+					<% else %>
+						<% @s = '' %>
+					<% end %>
+-->
+
+
+					<tr>
+
+
+						<% if c.rodeo.id != $idLoopAnt %><!--Solo escribe cuando el id pasa por primera vez --> 
+							<td rowspan="<%= ary[c.rodeo.id] %>"><%= c.rodeo.nombre %></td>
+
+
+						<%end %>
+
+						<td><%= c.category.nombre %></td>
+						<td><%= c.estado.nombre %></td>
+						<td><%= c.cant %></td>
+						<td><%= c.kilos %></td>
+						<td><%= c.kilos.to_i / c.cant.to_i %></td>
+						<% if c.rodeo.id != $idLoopAnt %><!--Solo escribe cuando el id pasa por primera vez --> 
+							<td rowspan="<%= ary[c.rodeo.id] %>"><%= @totalesRodeoArry[c.rodeo.id] %></td>
+
+							<% $idLoopAnt = c.rodeo.id %>
+						<%end %>
+
+
+
+					</tr>
+				<% end %>
+
+				<tr>
+					<td>TOTAL</td>
+					<td colspan="6"><% @total = @totalesRodeoArry.delete_if {|t| t.nil?} %><%= @total.sum %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	
+	<div class="small-6 large-6 columns"><div class="panel" ><div id="chart_div" ></div></div></div>
+	<div class="small-6 large-6 columns"><div class="panel">
+
+				<%= form_tag("/existencias", method: "get") do %>
+					<%= select_tag "empCons" , options_from_collection_for_select(@empDisp, :id, :nombre,@current_emp), :multiple => true %>
+					  <%= submit_tag("Consolidar", :class =>"button") %>
+
+				<% end %>
+			</div>
+		</div>
+	</div>
+

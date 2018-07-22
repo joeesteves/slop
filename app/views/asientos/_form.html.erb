@@ -1,0 +1,49 @@
+<%= form_for(@asiento) do |f| %>
+  <% if @asiento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@asiento.errors.count, "error") %> prohibited this asiento from being saved:</h2>
+
+      <ul>
+      <% @asiento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :debe %><br>
+    <%= f.text_field :debe %>
+  </div>
+  <div class="field">
+    <%= f.label :haber %><br>
+    <%= f.text_field :haber %>
+  </div>
+  <div class="field">
+    <%= f.label :cuenta %><br>
+    <%= f.text_field :cuenta %>
+  </div>
+  <div class="field">
+    <%= f.label :transaccion %><br>
+    <%= f.text_field :transaccion %>
+  </div>
+  <div class="field">
+    <%= f.label :cuota %><br>
+    <%= f.text_field :cuota %>
+  </div>
+   
+<div class="row collapse">
+ <div class="small-3 columns">
+      <span class="prefix">DESCRIPCIÓN</span>
+  </div>
+	<div class="small-9 columns">
+		<%= f.text_area :desc %>
+</div>
+  <div class="actions">
+    <%= f.submit "ENVIAR" %>
+  </div>
+<% end %>

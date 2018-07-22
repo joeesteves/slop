@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="small-12 columns">
+		<div class="panel">
+<%= form_for(@cotizacion) do |f| %>
+  <% if @cotizacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cotizacion.errors.count, "error") %> prohibited this cotizacion from being saved:</h2>
+
+      <ul>
+      <% @cotizacion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :cotizacion %><br>
+    <%= f.text_field :cotizacion %>
+  </div>
+  <div class="field">
+    <%= f.label :moneda %><br>
+		<%= f.collection_select(:moneda_id, Moneda.all, :id, :nombre,{},{}) %>
+  </div>
+  <div class="actions">
+   <%= f.submit "GUARDAR", :class => 'button', :style => 'width:100%' %>
+  </div>
+<% end %>
+</div>
+	</div>
+</div>

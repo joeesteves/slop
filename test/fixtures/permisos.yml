@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  establecimiento: 
+  user: 
+  permiso: 1
+
+two:
+  establecimiento: 
+  user: 
+  permiso: 1

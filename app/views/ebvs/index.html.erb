@@ -1,0 +1,96 @@
+<h1>EBVS</h1>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Nacdird</th>
+      <th>Nacdirp</th>
+      <th>Nacmatd</th>
+      <th>Nacmatp</th>
+      <th>Dttdird</th>
+      <th>Dttdirp</th>
+      <th>Dttmatd</th>
+      <th>Dttmatp</th>
+      <th>Pasoad</th>
+      <th>Pesoap</th>
+      <th>Pesoaymd</th>
+      <th>Pesoaymp</th>
+      <th>Pesoadd</th>
+      <th>Pesoadp</th>
+      <th>Gdpd</th>
+      <th>Gdpp</th>
+      <th>Icad</th>
+      <th>Icap</th>
+      <th>Consumod</th>
+      <th>Consumop</th>
+      <th>Irfd</th>
+      <th>Irfp</th>
+      <th>Althd</th>
+      <th>Althp</th>
+      <th>Largod</th>
+      <th>Largop</th>
+      <th>Ctd</th>
+      <th>Ctp</th>
+      <th>Ced</th>
+      <th>Cep</th>
+      <th>Animal</th>
+      <th></th>
+      <th></th>  
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ebvs.each do |ebv| %>
+      <tr>
+        <td><%= ebv.fecha %></td>
+        <td><%= ebv.nacdird %></td>
+        <td><%= ebv.nacdirp %></td>
+        <td><%= ebv.nacmatd %></td>
+        <td><%= ebv.nacmatp %></td>
+        <td><%= ebv.dttdird %></td>
+        <td><%= ebv.dttdirp %></td>
+        <td><%= ebv.dttmatd %></td>
+        <td><%= ebv.dttmatp %></td>
+        <td><%= ebv.pasoad %></td>
+        <td><%= ebv.pesoap %></td>
+        <td><%= ebv.pesoaymd %></td>
+        <td><%= ebv.pesoaymp %></td>
+        <td><%= ebv.pesoadd %></td>
+        <td><%= ebv.pesoadp %></td>
+        <td><%= ebv.gdpd %></td>
+        <td><%= ebv.gdpp %></td>
+        <td><%= ebv.icad %></td>
+        <td><%= ebv.icap %></td>
+        <td><%= ebv.consumod %></td>
+        <td><%= ebv.consumop %></td>
+        <td><%= ebv.irfd %></td>
+        <td><%= ebv.irfp %></td>
+        <td><%= ebv.althd %></td>
+        <td><%= ebv.althp %></td>
+        <td><%= ebv.largod %></td>
+        <td><%= ebv.largop %></td>
+        <td><%= ebv.ctd %></td>
+        <td><%= ebv.ctp %></td>
+        <td><%= ebv.ced %></td>
+        <td><%= ebv.cep %></td>
+        <td><%= ebv.animal %></td>
+         <td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_ebv_path(ebv) %></td>
+        <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), ebv, method: :delete, data: { confirm: 'Esta seguro que desea borrar el registro?' } %></td>
+  </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+		</div>
+		</div>
+	</div>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+	<%= link_to 'Crear Ebv', new_ebv_path, :class => 'button', :style=> 'width:100%' %>
+		</div> 
+	</div>
+</div>

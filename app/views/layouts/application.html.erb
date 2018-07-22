@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+	<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+		<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+			<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+				<head>
+					<meta charset="utf-8" />
+
+					<!-- Uncomment to make IE8 render like IE7 -->
+					<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+					<!-- Set the viewport width to device width for mobile -->
+					<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+					<title><%= content_for?(:title) ? yield(:title) : "SlopIT" %></title>
+
+					<%= stylesheet_link_tag    "application" %>
+					<%= javascript_include_tag "application" %>
+					<%= javascript_include_tag "vendor/custom.modernizr" %>
+					<%= csrf_meta_tags %>
+				</head>
+
+				<body>
+				<input type="hidden" id="root" value="<%= root_path %>">
+					<div id="grisar" class="grisar">
+				<h1 id="cargando">Cargando...</h1>
+				</div>
+<input id="new_controller_path" type="hidden" value="<%= root_path + controller_name %>/new">
+				
+<% if notice %>	
+	<script>
+		$(document).ready(function(){
+			$('#myModal').show();
+			$('#myModal').delay(5000).fadeOut();
+
+	});
+	</script>
+	<% else %>
+
+<script>
+		$(document).ready(function(){
+			$('#myModal').hide();
+
+	});
+</script>
+<% end %>
+
+					<nav class="top-bar">
+					<ul class="title-area">
+						<!-- Title Area -->
+						<li class="name" style="width:120px">
+						<h1><%= link_to "SLOP", root_path %></h1>						
+				<!--	<%= link_to image_tag("logo.png", :height => "100%", :width=>"100%", :border=>0), root_path %> -->
+						</li>
+						<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+						<li class="toggle-topbar"><a href="#"><span>Menu</span></a></li>
+					</ul>
+
+					<section class="top-bar-section">
+					<!-- Left Nav Section -->
+					<% if @current_user %>
+					<ul class="left">
+						<li class="divider"></li>
+						
+						<li class="has-dropdown"><a href="#">GANADERÍA</a>
+
+						<ul class="dropdown">
+							<li class="has-dropdown"><a href="#">CONFIGURACIÓN</a>
+
+							<ul class="dropdown">
+								<li><label>CONFIGURACIÓN</label></li>
+								<li><%= link_to "CATEGORIAS", categories_path %></li>
+								<li><%= link_to "TIPOS DE CATEGORIAS", cat_tipos_path %></li>
+								<li><%= link_to "ESTADOS", estados_path %></li>
+								<li><%= link_to "RODEOS", rodeos_path %></li>
+								<li><%= link_to "ACCIONES", tipo_accs_path %></li>
+
+
+							</ul>
+
+							</li>
+							<li class="divider"></li>
+
+							<li class="has-dropdown"><a>MOVIMIENTOS</a>
+
+							<ul class="dropdown">
+
+
+								<li><%= link_to "MOVIMIENTOS", movimientos_path %></li>
+								<li><%= link_to "NUEVO", new_movimiento_path %></li>
+
+							</ul>
+
+							</li>
+
+
+
+							<li class="divider"></li>
+							<li class="has-dropdown"><a href="#">INFORMES</a>
+
+							<ul class="dropdown">
+								<li><label>INFORMES</label></li>
+							<li><%= link_to "EXISTENCIAS", existencias_path %></li>
+							<li><%= link_to "PLANILLA DE HACIENDA", planilla_mensuals_path %></li>
+							</ul>
+							</li>
+
+						</ul>
+						</li>
+						
+						
+						<li class="has-dropdown"><a href="#">FINANZAS</a>
+
+						<ul class="dropdown">
+							<li class="has-dropdown"><a href="#">CONFIGURACIÓN</a>
+
+							<ul class="dropdown">
+							<li><label>CONFIGURACIÓN</label></li>
+							<li><%= link_to "TIPO DE TRANSACCIONES", transacciontipos_path %></li>
+							<li><%= link_to "CUENTAS", cuentas_path %></li>
+							</ul>
+
+							</li>
+							<li class="divider"></li>
+							<li><%= link_to "TRANSACCIONES", transacciones_path %></li>
+							<li><%= link_to "ASIENTOS", asientos_path %></li>
+							<li><%= link_to "CUOTAS", cuotas_path %></li>
+							<li class="divider"></li>
+
+							<li class="has-dropdown"><a href="#">INFORMES</a>
+
+							<ul class="dropdown">
+							<li><label>INFORMES</label></li>
+							<li><%= link_to "CIERRES Y VENCIMIENTOS", transacciones_informe_path %></li>
+							<li><%= link_to "EERR", eerr_path %></li>
+							<li><%= link_to "CASH-FLOW", cashflow_asiento_path %></li>
+							</ul>
+							</li>
+
+							</ul>
+							</li>
+							<li class="divider"></li>
+
+							<li class="has-dropdown"><a href="#">MI CUENTA</a>
+
+							<ul class="dropdown">
+								<li><%= link_to "USUARIO", edit_user_path(@current_user) %></li>
+								<li><%= link_to "MIS EMPRESAS", empresas_path %></li>
+								<li><%= link_to "MIS ESTABLECIMIENTOS", establecimientos_path %><li>
+							</ul>
+							</li>
+
+
+
+							<li class="divider"></li>
+							</ul>
+							<% end %>
+
+							<!-- Right Nav Section -->
+							<ul class="right">
+							<li class="divider hide-for-small"></li>
+
+							<li class="divider"></li>
+							<% if(@current_user) %>
+
+							<li class="has-dropdown"><a href="#">EST: <% if(@current_est)%><%= @current_est.nombre %><% end %></a>
+
+							<ul class="dropdown">
+							<li><label>ESTABLECIMIENTOS</label></li>
+							<% @estDisp.each do |e| %>
+
+							<li><%= link_to e.nombre, cambioEst_path(e.id), remote:true %></li>
+							<% end %>
+
+							</ul>
+							</li>
+							<li class="has-dropdown"><a href="#">EMP:  <% if(@current_emp) %><%= @current_emp.nombre %>		<% end %></a>
+							<ul class="dropdown">
+							<li><label>EMPRESAS</label></li>
+							<% @empDisp.each do |em| %>
+							<li><%= link_to em.nombre, cambioEmp_path(em.id),  remote:true %> </li>
+							<% end %>
+
+							</ul>
+
+							</li>
+							<% end %>
+
+							<li class="divider"></li>
+							<li class="has-dropdown"><%= link_to "CERRAR", logout_url %></li>
+
+							</ul>
+							</section>
+							</nav>
+
+							<div id="myModal" data-alert class="alert-box">
+							<%= notice.to_s.upcase %>
+							</div>
+							<%= yield %>
+
+
+
+							</body>
+							</html>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-08-16
+  cuota: 1
+  importe: 9.99
+  transaccion_id: 
+
+two:
+  fecha: 2013-08-16
+  cuota: 1
+  importe: 9.99
+  transaccion_id: 

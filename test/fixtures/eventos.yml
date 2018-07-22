@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-10-01
+  registro: 9.99
+  unidad: MyString
+  desc: MyText
+  eventotipo_id: 
+
+two:
+  fecha: 2013-10-01
+  registro: 9.99
+  unidad: MyString
+  desc: MyText
+  eventotipo_id: 

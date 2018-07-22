@@ -1,0 +1,29 @@
+<h1>INGRESAR A SLOP</h1>
+
+<%= form_tag  sessions_path do %>
+<div class="row collapse">
+	   <div class="small-2 columns">
+          <span class="prefix">USUARIO</span>
+        </div>
+	<div class="small-10 columns">
+	
+	<%= text_field_tag :usuario, params[:usuario]%>	
+	</div>		
+	</div>
+<div class="row collapse">
+	   <div class="small-2 columns">
+          <span class="prefix">CLAVE</span>
+        </div>
+	<div class="small-10 columns">
+	
+	<%=password_field_tag :password %>
+	</div>		
+	</div>
+<div class="row collapse">
+	   <div class="small-12 columns">
+
+	<%=submit_tag "ENVIAR", :class =>"button", :style => "width:100%" %></div>
+	</div>		
+	</div>
+	
+<% end %>

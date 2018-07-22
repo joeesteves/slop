@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-10-27
+  peso: 9.99
+  adpv: 9.99
+  adpvna: 9.99
+  ce: 9.99
+  mediciontipo_id: 
+
+two:
+  fecha: 2013-10-27
+  peso: 9.99
+  adpv: 9.99
+  adpvna: 9.99
+  ce: 9.99
+  mediciontipo_id: 

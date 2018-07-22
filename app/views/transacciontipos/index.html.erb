@@ -1,0 +1,43 @@
+<h1>Lista de transacciontipos</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Nombre</th>
+      <th></th>
+      <th></th>  
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transacciontipos.each do |transacciontipo| %>
+      <tr onclick="window.location.href='<%= edit_transacciontipo_path(transacciontipo)%>'">
+        <td><%= transacciontipo.codigo %></td>
+        <td><%= transacciontipo.nombre %></td>
+         <td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_transacciontipo_path(transacciontipo) %></td>
+        <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), transacciontipo, method: :delete, data: { confirm: 'Esta seguro que desea borrar el registro?' } %></td>
+  </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%= new_transacciontipo_path %>">
+					<input type="button" value="CREAR" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>
+

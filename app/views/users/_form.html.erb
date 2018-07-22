@@ -1,0 +1,71 @@
+<div class="row">
+	<div class="small-12 columns">
+	
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    
+<div class="row collapse">
+ <div class="small-2 columns">
+      <span class="prefix">USUARIO</span>
+  </div>
+	<div class="small-10 columns">
+    <%= f.text_field :usuario %>
+	</div>
+</div>
+<div class="row collapse">
+ <div class="small-2 columns">
+      <span class="prefix">CLAVE</span>
+  </div>
+	<div class="small-10 columns">
+  <%= f.password_field :password %>
+	</div>
+</div>
+<div class="row collapse">
+ <div class="small-2 columns">
+      <span class="prefix">REPETIR CLAVE</span>
+  </div>
+	<div class="small-10 columns">
+  <%= f.password_field :password_confirmation %>
+	</div>
+</div>
+    
+    
+ <div class="row collapse">
+ <div class="small-6 columns">   
+
+ <%if(@sel)%>
+		<%= select_tag "permisos" , options_from_collection_for_select(@estDisponibles, :id, :nombre, @sel), :multiple => true %>
+  <%else%>
+		<%= select_tag "permisos" , options_from_collection_for_select(@estDisponibles, :id, :nombre), :multiple => true %>
+  <%end%>
+  
+  </div>
+
+	<div class="small-6 columns">
+  <%if(@empSel)%>
+		<%= select_tag "empPermisos" , options_from_collection_for_select(@empDisponibles, :id, :nombre, @empSel), :multiple => true %>
+  <%else%>
+		<%= select_tag "empPermisos" , options_from_collection_for_select(@empDisponibles, :id, :nombre), :multiple => true %>
+  <%end%>
+	</div>
+</div> 
+  
+<div class="row">
+	<div class="small-6 columns">
+    <%= f.submit "GUARDAR", :class => "button", :style => "width:100%" %>
+	</div>
+	<div class="small-6 columns">
+	<button class="button" onclick="window.location.href='<%= establecimientos_path %>';return false" style="width:100%">VOLVER</button>
+	</div>
+
+</div>
+<% end %>

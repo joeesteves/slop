@@ -1,0 +1,165 @@
+
+<input type="hidden" id="codigo" value="<%= @tipo %>"/>
+
+<% if @esCierre == true %>
+<input type="hidden" id="esCierre" value="1">
+<%end %>
+
+<div id="popAplicaciones" class="reveal-modal">
+	<%= form_tag("/transacciones/aplicar", :remote => true) do %>
+		<div class="row collapse">
+			<div class="small-6 columns">
+				<span class="prefix">ADELANTOS</span>
+			</div>
+			<div class="small-6 columns">
+				<span class="prefix">CUOTAS</span>
+			</div>
+		</div>
+		<div class="row collapse">
+			<div class="small-6 columns" id="divApp9">
+				<% unless @cuotas9.nil? %>
+					<%= select_tag "aplicaciones9" , options_from_collection_for_select(@cuotas9, :id, :desc), :tabindex=>1 %>
+				<%else%>
+					<select id="aplicaciones9" name="aplicaciones9" tabindex="1"> </select>	
+
+				<%end%>
+			</div>
+
+			<div class="small-6 columns" id="divApp6">
+				<% unless @cuotas.nil? %>
+					<%= select_tag "aplicaciones6" , options_from_collection_for_select(@cuotas, :id, :desc), :multiple => true, :tabindex=>2 %>
+				<%else%>
+					<select id="aplicaciones6" name="aplicaciones6[]" multiple tabindex="2"> </select>	
+				<%end%>
+			</div>
+		</div>
+		<div class="row collapse">
+			<div class="small-12 columns">
+				<input id="botonAplicar" type="submit" value="APLICAR" class="button" style="width:100%;height:100%" tabindex="3">
+			</div>
+			<a class="close-reveal-modal">&#215;</a>
+		<% end %>
+	</div>
+</div>
+
+<div class="panel">
+	<div class="row">
+		<div class="small-12 columns">
+			<%= form_for(@transaccion) do |f| %>
+				<% if @transaccion.errors.any? %>
+					<div id="error_explanation">
+						<h2><%= pluralize(@transaccion.errors.count, "error") %> prohibited this transaccion from being saved:</h2>
+
+						<ul>
+							<% @transaccion.errors.full_messages.each do |msg| %>
+								<li><%= msg %></li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+
+				<div class="row collapse">
+					<div class="small-1 columns">
+						<span class="prefix">FECHA</span>
+					</div>
+					<div class="small-2 columns">
+						<input type="date" id="fecha" name="transaccion[fecha]" value="<%= @transaccion.fecha %>" tabindex="1"/>
+					</div>
+				<div class="small-1 columns">
+					<span class="prefix">OPERACIÓN</span>
+				</div>
+				<div class="small-6 columns" id="divOp">
+					<%= f.collection_select(:transacciontipo_id, Transacciontipo.all, :id, :nombre, {}, {:tabindex =>2}) %>
+				</div>
+				<div class="small-2 columns" id="divIva">
+
+					<%= f.select :civa, options_for_select({"Con Iva" => true, "Sin Iva" => false}, @transaccion.civa), {}, {:tabindex =>3} %>
+				</div>
+				<div class="small-4 columns" id="divApp">
+					<% unless @cuotas.nil? %>
+						<%= select_tag "aplicaciones" , options_from_collection_for_select(@cuotas, :id, :desc, @cApp), :multiple => true, :tabindex=>3 %>
+					<%else%>
+						<select id="aplicaciones" name="aplicaciones[]" multiple tabindex="3"> </select>	
+
+					<%end%>
+				</div>
+			</div>
+
+			<div class="row collapse">
+				<div class="small-2 columns">
+					<span class="prefix">DEBE</span>
+				</div>
+
+				<div class="small-4 columns">
+					<%= f.collection_select(:ctaD_id, @ctasD, :id, :nombre,{:selected => @ctasDS}, {:tabindex => 3}) %>
+				</div>
+				<div class="small-2 columns">
+					<span class="prefix">HABER</span>
+				</div>
+
+				<div class="small-4 columns">
+					<%= f.collection_select(:ctaH_id, @ctasH, :id, :nombre,{:selected => @ctasDH}, {:tabindex => 4}) %>
+				</div>
+			</div>
+			<br>
+			<div class="row collapse">
+				<div class="small-1 columns iva">
+					<span class="prefix">BRUTO</span>
+				</div>
+				<div class="small-1 columns iva">
+					<%= f.text_field :bruto, :value => (number_with_precision(f.object.bruto, :precision => 2) || 0),  :tabindex => 5%>
+				</div>
+				<div class="small-1 columns iva">
+					<span class="prefix">IVA</span>
+				</div>
+				<div class="small-1 columns iva">
+					<%= f.text_field :iva, :value => (number_with_precision(f.object.iva, :precision => 2) || 0),  :tabindex => 6%>
+				</div>
+				<div class="small-1 columns">
+					<span class="prefix">TOTAL</span>
+				</div>
+				<div class="small-1 columns" id="divImp">
+					<%= f.text_field :importe, :value => (number_with_precision(f.object.importe, :precision => 2) || 0),  :tabindex => 7%>
+				</div>
+				<div class="small-1 columns">
+					<span class="prefix">RM?</span>
+				</div>
+				<div class="small-1 columns">
+					<span class="prefix" style="height:26px">
+						<%= f.check_box :rmensuales, :style =>"width: 24px; height: 24px;",  :tabindex => 8 %>
+					</span>
+				</div>
+				<div class="small-1 columns">
+					<span class="prefix">CUOTAS</span>
+				</div>
+				<div class="small-1 columns">
+					<%= f.number_field :cuotascantidad,  :tabindex => 9 %>
+				</div>
+				<div class="small-2 columns">
+					<%= f.text_field :valorCuota, :id => "valorCuota", :value => (number_with_precision(f.object.valorCuota, :precision => 2) || 0),  :tabindex => 10%>
+				</div>
+			</div>
+
+			<div class="row collapse">
+				<div class="small-3 columns">
+					<span class="prefix">DESCRIPCIÓN</span>
+				</div>
+				<div class="small-9 columns">
+					<%= f.text_area :desc,  :tabindex => 11 %>
+				</div>
+
+
+				<div class="row collapse">
+					<div class="small-12 columns">
+						<%= f.submit "GUARDAR", :class => "button", :style => "width:100%",  :tabindex => 12 %>
+
+					</div>
+				</div>
+
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
+

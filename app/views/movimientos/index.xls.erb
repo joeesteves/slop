@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">FECHA</Data></Cell>
+				<Cell><Data ss:Type="String">ACCION</Data></Cell>
+        <Cell><Data ss:Type="String">RODEO</Data></Cell>
+        <Cell><Data ss:Type="String">CATEGORIA</Data></Cell>
+        <Cell><Data ss:Type="String">ESTADO</Data></Cell>
+        <Cell><Data ss:Type="String">CANTIDAD</Data></Cell>
+      </Row>
+    <% @movimientos.each do |movimiento| %>
+      <Row>
+      <Cell><Data ss:Type="Date"><%= movimiento.fecha %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= movimiento.tipo_acc.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= movimiento.rodeo.nombre %></Data></Cell> 
+      <Cell><Data ss:Type="String"><%= movimiento.category.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= movimiento.estado.nombre %></Data></Cell> 
+      <Cell><Data ss:Type="Number"><%= movimiento.cantidad.to_i %></Data></Cell>  
+
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

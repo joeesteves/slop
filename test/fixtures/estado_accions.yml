@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  estado: 
+  tipo_acc: 
+  codigo: 1
+
+two:
+  estado: 
+  tipo_acc: 
+  codigo: 1

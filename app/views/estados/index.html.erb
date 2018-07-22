@@ -1,0 +1,37 @@
+<h1>ESTADOS</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+				<thead>
+  <tr>
+    <th>NOMBRE</th>
+    <th>DESCRIPCIÓN</th>  
+  </tr>
+</thead>
+<tbody>
+<% @estados.each do |estado| %>
+  	<tr onclick="window.location.href='<%= edit_estado_path(estado)%>'">
+    <td><%= estado.nombre %></td>
+    <td><%= estado.desc %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%= new_estado_path">
+					<input type="button" value="CREAR NUEVO ESTADO" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>
+

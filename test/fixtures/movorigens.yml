@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cat_ori: 1
+  est_ori: 1
+  rod_ori: 1
+  movimiento: 
+
+two:
+  cat_ori: 1
+  est_ori: 1
+  rod_ori: 1
+  movimiento: 

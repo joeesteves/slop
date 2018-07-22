@@ -1,0 +1,33 @@
+<h1><%= plural_table_name.upcase %></h1>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+					<tr>
+						<% attributes.each do |attribute| -%>
+							<th><%= attribute.human_name %></th>
+						<% end -%>
+						<th></th>
+						<th></th>
+					</tr>
+					<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+						<tr>
+							<% attributes.each do |attribute| -%>
+								<td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+							<% end -%>
+							<td><%%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></td>
+							<td><%%= link_to image_tag("borrar.png", :height => 20, :border=>0), <%= singular_table_name %>, <%= key_value :method, ":delete" %>, <%= key_value :data, "{ #{key_value :confirm, "'Esta seguro que desea eliminar el registro?'"} }" %> %></td>
+						</tr>
+						<%% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+	<%%= link_to 'Crear <%= human_name %>', new_<%= singular_table_name %>_path, :class => 'button', :style=> 'width:100%' %>
+		</div> 
+	</div>
+</div>
+

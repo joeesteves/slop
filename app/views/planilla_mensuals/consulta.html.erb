@@ -1,0 +1,65 @@
+  
+<h1>PLANILLA DE HACIENDA (<%= @desde %> hasta <%= @hasta %> )</h1>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+<table class="notDT">
+  <tr>
+  	<th>CATEGORIA</th>
+ <!-- 	<th>ESTADO</th> -->
+    <th>EI</th>
+    <th>NAC</th>
+		<th>REC</th>
+	  <th>TR+</th>
+		<th>RE+</th>
+		<th>DI+</th>
+		<th class="neg">MOR</th>
+		<th class="neg">DES</th>
+    <th class="neg">TR-</th>
+    <th class="neg">RE-</th>
+    <th class="neg">DI-</th>
+    <th>EF</th>
+	</tr>
+
+
+<% @ary.each do |a| %>    
+<%if a[0] != nil %>
+ <tr>
+   
+    
+    <td style="text-align:left"><% if a[0] != nil %><%= a[0] %><%end%></td>  
+    <td><% if a[1] != nil %><%= a[1] %><%else%>0<%end%></td>
+    <td><% if a[2] != nil %><%= a[2] %><%end%></td>
+    <td><% if a[3] != nil %><%= a[3] %><%end%></td>
+    <td><% if a[4] != nil %><%= a[4] %><%end%></td>  
+  	<td><% if a[5] != nil %><%= a[5] %><%end%></td>  
+  	<td><% if a[6] != nil %><%= a[6] %><%end%></td>  
+    <td class="neg"><% if a[7] != nil %>(<%= a[7] %>)<%end%></td>
+    <td class="neg"><% if a[8] != nil %>(<%= a[8] %>)<%end%></td>
+    <td class="neg"><% if a[9] != nil %>(<%= a[9] %>)<%end%></td>
+    <td class="neg"><% if a[10] != nil %>(<%= a[10] %>)<%end%></td>  
+  	<td class="neg"><% if a[11] != nil %>(<%= a[11] %>)<%end%></td>  
+ 		<td><% if a[12] != nil %><%= a[12] %><%else%>0<%end%></td>  
+
+
+
+
+    
+	</tr>
+<% end %>
+	
+<% end %>
+
+</table>
+</div>
+	</div>
+</div>
+
+<H1> DETALLE DE MOVIMIENTOS </H1>
+
+<%= render :template => 'movimientos/index' %>
+</div>
+<div id="chart_div" style="float:right"></div>
+	<input type="hidden" id="esReload">
+	<br /> 
+

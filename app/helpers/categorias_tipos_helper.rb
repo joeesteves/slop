@@ -1,0 +1,2 @@
+module CategoriasTiposHelper
+end

@@ -1,0 +1,13 @@
+<p>
+  <b>NOMBRE:</b>
+  <%= @tipo_acc.nombre %>
+</p>
+
+<p>
+  <b>CODIGO:</b>
+  <%= @tipo_acc.codigo %>
+</p>
+
+
+<%= link_to 'EDITAR', edit_tipo_acc_path(@tipo_acc) %> |
+<%= link_to 'VOLVER', tipo_accs_path %>

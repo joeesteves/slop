@@ -1,0 +1,34 @@
+<h1>Lista de tareas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Titulo</th>
+      <th>Desc</th>
+      <th>Estado</th>
+      <th>Establecimiento</th>
+      <th></th>
+      <th></th>  
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tareas.each do |tarea| %>
+      <tr>
+        <td><%= tarea.fecha.strftime("%d/%m/%Y") %></td>
+        <td><%= tarea.titulo %></td>
+        <td style="width:100%"><%= tarea.desc %></td>
+        <td><%= tarea.estado %></td>
+        <td><%= tarea.establecimiento.id rescue nil %></td>
+         <td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_tarea_path(tarea) %></td>
+        <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), tarea, method: :delete, data: { confirm: 'Esta seguro que desea borrar el registro?' } %></td>
+  </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear Tarea', new_tarea_path %>

@@ -1,0 +1,56 @@
+<div class="row">
+<div class="small-12 large-12 columns">
+<div class="panel">
+<table id="movimientoIndex">
+<thead>
+  <tr>
+  
+    <th style="width:10%">FECHA</th>
+    <th style="width:15%" >ACCIÓN</th>
+    <th style="width:10%">CATEGORIA</th>
+    <th style="width:10%">RODEO</th>
+    <th style="width:15%">ESTADO</th>
+		<th>CANTIDAD</th>
+		<th>KG/CAB</th>		
+    <th style="width:4	0%">DESCRIPCIÓN</th>
+
+    
+   </tr>
+</thead>
+ <tbody>
+<% @movimientos.each do |movimiento| %>
+  <tr onclick="window.location.href='<%= edit_movimiento_path(movimiento)%>'">
+    <td><%= movimiento.fecha.strftime("%d/%m/%Y") %></td>
+		<td><%= movimiento.tipo_acc.nombre %></td>
+    <td><%= movimiento.category.nombre %></td>
+    <td><%= movimiento.rodeo.nombre %></td>
+    <td><%= movimiento.estado.nombre %></td>
+    <td><%= movimiento.cantidad %></td>
+		<td><%= movimiento.kilos %></td>
+    <td><%= movimiento.desc %></td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+</div>		
+</div>		
+</div>	
+
+<div class="row">
+<div class="small-6 large-12 columns">
+<div class="panel">
+
+	<%= form_tag("/movimientos", method: "get") do %>
+  <%= select_tag "empCons" , options_from_collection_for_select(@empDisp, :id, :nombre,@current_emp), :multiple => true %>
+  <center><%= submit_tag("Consolidar", :class => "button") %></center>
+
+	<% end %>
+	</div>
+</div>
+
+
+</div>
+</div>
+</div>
+

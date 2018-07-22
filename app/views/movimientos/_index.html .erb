@@ -1,0 +1,48 @@
+<table>
+  <tr>
+    <th style="width:10%">FECHA</th>
+    <th style="width:20%" >ACCIÓN</th>
+    <th>CATEGORIA</th>
+    <th style="width:10%">RODEO</th>
+    <th style="width:10%">ESTADO</th>
+		<th>CANTIDAD</th>
+		<th>KG/CAB</th>		
+    <th style="width:60%">DESCRIPCIÓN</th>
+
+    
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @movimientos.each do |movimiento| %>
+  <tr>
+    <td><%= movimiento.fecha.strftime("%d %m %y") %></td>
+		<td><%= movimiento.tipo_acc.nombre %></td>
+    <td><%= movimiento.category.nombre %></td>
+    <td><%= movimiento.rodeo.nombre %></td>
+    <td><%= movimiento.estado.nombre %></td>
+    <td><%= movimiento.cantidad %></td>
+		<td><%= movimiento.kilos %></td>
+    <td><%= movimiento.desc %></td>
+    <!-- <td><%= movimiento.id %></td> -->
+
+		<% if (movimiento.tipo_acc.codigo != 0) %>
+    <td><%= link_to 'E', edit_movimiento_path(movimiento) %></td>
+    <td><%= link_to 'B', movimiento, method: :delete, data: { confirm: 'BORRAR MOVIMIENTO?' } %></td>
+		<% else %>
+		<td>⇊</td>
+ 		<td>⇊</td>
+		<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= paginate @movimientos %>
+
+<!-- <%= link_to 'NUEVO', new_movimiento_path %><br>
+<%= link_to 'PLANILLA DE EXISTENCIAS', existencias_path %><br>
+<%= link_to 'PLANILLA MENSUAL', planilla_mensuals_path %><br>
+<%= link_to 'EXCEL', movimientos_path(format: "xls") %>
+
+-->

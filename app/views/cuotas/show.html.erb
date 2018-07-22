@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @cuota.fecha %>
+</p>
+
+<p>
+  <strong>Cuota:</strong>
+  <%= @cuota.cuota %>
+</p>
+
+<p>
+  <strong>Importe:</strong>
+  <%= @cuota.importe %>
+</p>
+
+<p>
+  <strong>Transaccion:</strong>
+  <%= @cuota.transaccion %>
+</p>
+
+<%= link_to 'Edit', edit_cuota_path(@cuota) %> |
+<%= link_to 'Back', cuotas_path %>

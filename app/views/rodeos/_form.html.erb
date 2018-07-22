@@ -1,0 +1,25 @@
+<%= form_for(@rodeo) do |f| %>
+  <% if @rodeo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rodeo.errors.count, "error") %> prohibited this rodeo from being saved:</h2>
+
+      <ul>
+      <% @rodeo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label "Descripción" %><br />
+    <%= f.text_field :desc %>
+  </div>
+  <div class="actions">
+    <%= f.submit "ENVIAR..." %>
+  </div>
+<% end %>

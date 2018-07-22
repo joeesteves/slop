@@ -1,0 +1,94 @@
+<h1>ASIENTOS</h1>
+<input type="hidden" id="action" value="<%= controller.action_name %>"/> 
+<div id="filtro" class="reveal-modal">
+	<%= form_tag("/asientos/index", :method => "get") do %>
+		<div class="row collapse">
+			<div class="small-2 columns">
+				<span class="prefix">DESDE</span>
+			</div>
+			<div class="small-10 columns">
+				<input type="date" id="desde" name="desde" value="<%= @desde %>" tabindex="1"/>
+			</div>
+		</div>
+		<div class="row collapse">
+			<div class="small-2 columns">
+				<span class="prefix">HASTA</span>
+			</div>
+			<div class="small-10 columns">
+				<input type="date" id="hasta" name="hasta" value="<%= @hasta %>" tabindex="2"/>
+			</div>
+		<div class="small-2 columns">
+			<span class="prefix">CUENTAS</span>
+		</div>
+		<div class="small-10 columns">
+			<%= select_tag :cuentas, options_from_collection_for_select(Cuenta.sesionActual(@current_emp.id).where('tipo != 0'),:id,:nombre, @cuentas), :multiple=>true, :tabindex => 3%>
+		</div>
+		<div class="small-12 columns">
+			<input type="submit" value="ARMAR INFORME" class="button" style="width:100%;height:100%" tabindex="4">
+		</div>
+		<a class="close-reveal-modal">&#215;</a>
+	<% end %>
+</div>
+		</div>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%" class="notDT groupDT">
+				<thead>
+					<tr>
+						<th>CUENTA</th>
+						<th>FECHA</th>
+						<th>DEBE</th>
+						<th>HABER</th>
+						<th>SALDO</th>
+						<th>DESC</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @asientos.each do |asiento| %>
+						<tr onclick="window.location.href='<%= edit_transaccion_path(asiento.transaccion.id)%>'">
+							<td width="450px">
+								<div style="font-size:14px">
+									<%= asiento.cuenta.nombre %><b>  →   SALDO: <%=  @saldoGlobal[asiento.cuenta_id].to_s %>
+								</b>
+							</div>
+						</td>
+							<td><%= asiento.fecha.strftime("%d/%m/%Y") %></td>
+							<td class="debe"><%= asiento.debe %></td>
+							<td class="haber"><%= asiento.haber%></td>
+							<% if (@saldo[asiento.id]<0 )%>
+								<td class="saldo" style="color:red">
+							<%else%>
+								<td class="saldo">
+						<%end%>
+						<%= @saldo[asiento.id] %>
+							</td>
+							<td><%= asiento.desc.upcase %></td>
+						</tr>
+						<% end %>
+						<tr>
+							<td class="totales">TOTALES</td>
+							<td>⇶ ⇉ →</td>
+							<td id="totalDebe"></td>
+							<td id="totalHaber"></td>
+							<td id="totalSaldo"></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="small-12 large-12 columns">
+			<div class="panel">
+				<center>
+					<a href="<%= new_category_path">
+						<input type="button" value="CREAR ASIENTO" class="button"/>
+					</a>
+				</center>
+			</div> 
+		</div>
+	</div>

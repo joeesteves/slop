@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="small-12 columns">
+		<div class="panel">
+<%= form_for(@medicion) do |f| %>
+  <% if @medicion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@medicion.errors.count, "error") %> prohibited this medicion from being saved:</h2>
+
+      <ul>
+      <% @medicion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :peso %><br>
+    <%= f.text_field :peso %>
+  </div>
+  <div class="field">
+    <%= f.label :adpv %><br>
+    <%= f.text_field :adpv %>
+  </div>
+  <div class="field">
+    <%= f.label :adpvna %><br>
+    <%= f.text_field :adpvna %>
+  </div>
+  <div class="field">
+    <%= f.label :ce %><br>
+    <%= f.text_field :ce %>
+  </div>
+  <div class="field">
+    <%= f.label :mediciontipo %><br>
+    <%= f.text_field :mediciontipo %>
+  </div>
+  <div class="actions">
+   <%= f.submit "GUARDAR", :class => 'button', :style => 'width:100%' %>
+  </div>
+<% end %>
+</div>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+<h1>MEDICIONES</h1>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Peso</th>
+      <th>Adpv</th>
+      <th>Adpvna</th>
+      <th>Ce</th>
+      <th>Mediciontipo</th>
+      <th></th>
+      <th></th>  
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mediciones.each do |medicion| %>
+      <tr>
+        <td><%= medicion.fecha %></td>
+        <td><%= medicion.peso %></td>
+        <td><%= medicion.adpv %></td>
+        <td><%= medicion.adpvna %></td>
+        <td><%= medicion.ce %></td>
+        <td><%= medicion.mediciontipo %></td>
+         <td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_medicion_path(medicion) %></td>
+        <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), medicion, method: :delete, data: { confirm: 'Esta seguro que desea borrar el registro?' } %></td>
+  </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+		</div>
+		</div>
+	</div>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+	<%= link_to 'Crear Medicion', new_medicion_path, :class => 'button', :style=> 'width:100%' %>
+		</div> 
+	</div>
+</div>

@@ -1,0 +1,15 @@
+$('body').css('cursor','auto');	
+$('#aplicaciones9').empty();
+<%unless @cuotasPendientes9.length==0 %>
+	<% @cuotasPendientes9.each do |s| %>
+		<% unless @ap9[s.id].nil? %>
+			<% @pendiente9 = s.importe - @ap9[s.id] %>
+			<% @pendiente9 = @pendiente9.to_s + ' / ' + s.importe.to_s %>
+
+		<% else %>
+			<% @pendiente9 = s.importe.to_s %>
+		<%end%>
+		$('#aplicaciones9').append(new Option(' <%= @pendiente9 + ' -- ' + s.fecha.strftime("%d/%m") + ' -- ' + s.desc %>','<%= s.id %>'));
+	<% end %>		
+<% end %>
+$('select').trigger("chosen:updated");

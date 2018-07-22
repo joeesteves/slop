@@ -1,0 +1,42 @@
+<h1>CATEGORÍAS</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+				<thead>
+					<tr>
+						<th>NOMBRE</th>
+						<th>PESO</th>
+						<th>TIPO DE CATEGORÍA</th>
+						<th>DESCRIPCIÓN</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @categories.each do |category| %>
+
+						<tr onclick="window.location.href='<%= edit_category_path(category)%>'">
+							<td><%= category.nombre %></td>
+							<td><%= category.pesoEstandard %></td>
+							<td><%= category.catTipo.nombre %></td>
+							<td><%= category.desc %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%= new_category_path %>">
+					<input type="button" value="CREAR NUEVA CATEGORIA" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>
+

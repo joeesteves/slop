@@ -1,0 +1,34 @@
+<%= form_for(@tipo_acc) do |f| %>
+  <% if @tipo_acc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tipo_acc.errors.count, "error") %> prohibited this tipo_acc from being saved:</h2>
+
+      <ul>
+      <% @tipo_acc.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :codigo %><br />
+    <%= f.number_field :codigo %>
+  </div>
+   <div class="field" id="divEstadoOri">
+  <%= select_tag "estados_ori", options_from_collection_for_select(Estado.all, :id, :nombre, @selOri), :multiple => true %>
+  
+ </div>
+ 
+   <div class="field" id="divEstadoDest">
+  <%= select_tag "estados_dest", options_from_collection_for_select(Estado.all, :id, :nombre, @selDest), :multiple => true %>
+  
+ </div>
+  <div class="actions">
+       <%= f.submit "ENVIAR..." %>
+  </div>
+<% end %>

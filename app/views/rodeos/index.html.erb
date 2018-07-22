@@ -1,0 +1,41 @@
+<h1>RODEOS</h1>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+				<thead>
+  <tr>
+    <th>NOMBRE</th>
+    <th>DESCRIPCIÓN</th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+<% @rodeos.each do |rodeo| %>
+  <tr onclick="window.location.href='<%= edit_rodeo_path(rodeo)%>'">
+    <td><%= rodeo.nombre %></td>
+    <td><%= rodeo.desc %></td>
+    <td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_rodeo_path(rodeo) %></td>
+    <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), rodeo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%= new_rodeo_path %>">
+					<input type="button" value="CREAR NUEVA CATEGORIA" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>
+

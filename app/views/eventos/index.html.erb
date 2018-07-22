@@ -1,0 +1,42 @@
+<h1>Lista de eventos</h1>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Registro</th>
+      <th>Desc</th>
+      <th>Eventotipo</th>
+      <th></th>
+      <th></th>  
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @eventos.each do |evento| %>
+      <tr>
+        <td><%= evento.fecha %></td>
+        <td><%= evento.registro %></td>
+        <td><%= evento.desc %></td>
+        <td><%= evento.eventotipo.nombre %></td>
+         <td><%= link_to image_tag("editar.png", :height => 20, :border=>0), edit_evento_path(evento) %></td>
+        <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), evento, method: :delete, data: { confirm: 'Esta seguro que desea borrar el registro?' } %></td>
+  </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+	</div> 
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+<%= link_to 'Crear Evento', new_evento_path, :class => 'button', :style => 'width:100%' %>
+	</div> 
+	</div>
+</div>
+

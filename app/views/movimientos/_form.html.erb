@@ -1,0 +1,236 @@
+<script>
+	$(function() {
+	$('#tabs').tabs();
+	});
+</script>
+<div id="filtro" class="reveal-modal" >
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Ingreso de RP</a></li>
+			<li><a href="#tabs-2">Seleccionar RP's</a></li>
+			<li><a href="#tabs-3">Seleccionar Toros</a></li>
+		</ul>
+		<div id="tabs-1">
+			Aca van los nuevos RPS
+		</div>
+		<div id="tabs-2">
+			<div class="row">
+				<div class="small-6 columns">
+					<button class="button" id="moveBack" style="width:100%"> ← </button>
+				</div>
+				<div class="small-6 columns">
+					<button class="button" id="move" style="width:100%"> → </button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="small-6 columns scroller">
+					<div id="rpDisponibles">
+					</div>
+				</div>
+				<div class="small-6 columns scroller">
+					<div id="rpSeleccionados">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="tabs-3">
+			Aca van los toros
+		</div>
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div class="row">
+	<div class="small-12 columns">
+		<%= form_for(@movimiento,:html => {:id => "formMov"} ) do |f|%>
+			<fieldset>
+				<legend>Movimiento de hacienda</legend>
+				<% if @movimiento.errors.any? %>
+					<div id="error_explanation">
+						<h2><%= pluralize(@movimiento.errors.count, "error") %> prohibited this movimiento from being saved:</h2>
+
+						<ul>
+							<% @movimiento.errors.full_messages.each do |msg| %>
+								<li><%= msg %></li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+
+				<div class="row collapse">
+					<div class="small-3 columns">  
+						<span class="prefix radius">FECHA </span>
+					</div>
+					<div class="small-9 columns">
+						<input type="date" id="fecha" name="movimiento[fecha]" tabindex="1" value="<%= @movimiento.fecha%>" /></p>
+					</div>
+				</div>
+
+				<div class="row collapse">
+					<div class="small-3 columns">  
+						<span class="prefix radius">ACCIÓN </span>
+					</div>
+					<div class="small-9 columns">
+
+						<%= f.collection_select :tipo_acc_id, @acciones, :id, :nombre, {:prompt => "SEL. ACCIÓN"}, {:id => "tipo_acc_id",:tabindex => '2'}%>  
+						</div >
+					</div>
+
+
+					<div class="row">				
+						<div class="small-6 columns" id="catOrigen">					
+							<div class="row collapse">
+								<div class="small-3 columns">  
+									<span class="prefix radius">ORIGEN</span>
+								</div>				
+								<div class="small-9 columns"> 		
+									<select id='cat_ori' name='cat_ori' tabindex="3">
+										<% if @catOri %>
+											<option value='<%= @catOri.id %>'><%= @catOri.nombre %></option>
+										<% end %>
+									</select>				
+								</div>
+							</div>  
+						</div>
+
+
+						<div class="small-12 columns" id="divCat"> 
+							<div class="row collapse">
+								<div class="small-3 columns">  
+									<span class="prefix radius">CATEGORÍA</span>
+								</div>				
+								<div class="small-9 columns"> 				
+									<%= f.collection_select :category_id, @categorias, :id, :nombre, {:prompt => false}, {:id => "category_id", :class => "NoAct", :tabindex =>4}%>  
+								</div>
+							</div>  
+						</div>
+					</div>  
+
+
+
+
+					<div class="row">
+						<div class="small-6 columns" id="rodOrigen">					
+							<div class="row collapse">
+								<div class="small-3 columns">  
+									<span class="prefix radius">ORIGEN</span>
+								</div>				
+								<div class="small-9 columns"> 		
+									<select id='rod_ori' name='rod_ori' tabindex="5">
+										<%if @rodOri %>
+											<option value='<%= @rodOri.id %>'><%= @rodOri.nombre %></option>
+										<%end%>
+									</select>
+								</div>
+							</div>  
+						</div>
+
+						<div class="small-12 columns" id="divRod"> 
+							<div class="row collapse">
+								<div class="small-3 columns">  
+									<span class="prefix radius">RODEO</span>
+								</div>				
+								<div class="small-9 columns"> 				
+									<%= f.collection_select :rodeo_id, @rodeos, :id, :nombre, {:prompt => false}, {:id => "rodeo_id", :class => "NoAct", :tabindex =>6}%>  
+								</div>
+							</div>
+				</div>
+			</div>
+		<div class="row">
+				<div class="small-6 columns" id="estOrigen">					
+					<div class="row collapse">
+						<div class="small-3 columns">  
+							<span class="prefix radius">ORIGEN</span>
+						</div>				
+						<div class="small-9 columns"> 		
+							<select id='est_ori' name='est_ori' tabindex="7">
+								<%if @estOri %>
+									<option value='<%= @estOri.id %>'><%= @estOri.nombre %></option>
+								<% end %>
+							</select>
+						</div>
+					</div>  
+				</div>
+				
+				<div class="small-12 columns" id="divEst"> 
+					<div class="row collapse">
+						<div class="small-3 columns">  
+							<span class="prefix radius">ESTADO</span>
+						</div>				
+						<div class="small-9 columns"> 				
+						<%= f.collection_select :estado_id, @estados, :id, :nombre, {:prompt => false}, {:id => "estado_id", :tabindex =>8}%>  
+						</div>
+					</div>
+				</div>
+			</div>
+	
+
+
+			<div class="row">
+				<div class="small-12 columns">			
+							<div class="row collapse">
+								<div class="small-3 columns">
+						      <span class="prefix radius">CANTIDAD</span>
+						    </div>
+								<div class="small-3 columns">
+									<%= f.number_field :cantidad, {:id => "cantidad", :placeholder => "Indique la cantidad de animales",  :tabindex =>9} %>   
+								</div>
+								<div class="small-3 columns">  
+									<span class="postfix">CABEZAS</span>
+								</div>
+								<div class="small-3 columns">  
+									<span class="postfix radius" id="disponible"></span>
+								</div>
+					 		</div>
+				</div>
+				</div>
+					 		
+					 		<div class="row">
+			
+				<div class="small-12 columns">			
+					<div class="row collapse">
+				
+								<div class="small-3 columns">
+						      <span class="prefix">PESO</span>
+						    </div>
+						    
+								<div class="small-9 columns">
+									<%= f.number_field :kilos,{:id => "kilos", :placeholder => "Indique el peso de los animales",  :tabindex =>10} %>
+						    </div>
+					
+				
+			
+			</div>
+			</div>
+			</div>
+
+			<input type="hidden" id="accCrea"> <!-- ? -->
+			<input type="hidden" id="disp"> <!--disponibles -->
+			<input type="hidden" id="codigoAcc">
+
+			<div class="circulo">	
+			</div>
+
+
+
+			<div class="row collapse">
+				<div class="small-3 columns">  
+<span class="prefix radius">DESCRIPCIÓN</span>
+				</div>
+				<div class="small-9 columns">  				
+					<%= f.text_area :desc, :placeholder => "Indique una descripción representativa del movimiento",  :tabindex =>11 %>
+				</div>
+			</div>
+
+			<div class="row">
+				<CENTER>
+					<div class="small-12 columns">  
+						<%= f.submit "GUARDAR", {:class => "button", :id => "enviar", :style => "width:100%", :tabindex=>12	} %>
+					</div>
+				</CENTER>
+			</div>
+		</fieldset>
+	<% end %>
+		</div>
+		</div>

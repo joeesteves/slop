@@ -1,0 +1,48 @@
+
+<h1>Transacciones</h1>
+<input type="hidden" id="accion" value="index" />
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<table style="width:100%">
+  <thead>
+    <tr>
+      <th style="width:20px">Fecha</th>
+      <th style="width:40px">Tipo</th>
+      <th style="width:20px">Importe</th>
+      <th style="width:20px">Cuotas</th>
+      <th>Desc</th>
+      <th style="width:7px"></th>  
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transacciones.each do |transaccion| %>
+      <tr onclick="window.location.href='<%= edit_transaccion_path(transaccion)%>'">
+        <td><%= transaccion.fecha.strftime("%d/%m/%Y") %></td>
+        <td><%= transaccion.transacciontipo.nombre %></td>
+        <td><%= transaccion.importe %></td>
+        <td><%= transaccion.cuotascantidad %></td>
+         <td><%= transaccion.desc %></td>
+        <td><%= link_to image_tag("borrar.png", :height => 20, :border=>0), transaccion, method: :delete, data: { confirm: 'Esta seguro que desea borrar el registro?' } %></td>
+  </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="panel">
+			<center>
+			<a href="<%= new_transaccion_path %>">
+					<input style="width:100%" type="button" value="NUEVA TRANSACCIÓN" class="button"/>
+			</a>
+			</center>
+		</div> 
+	</div>
+</div>
+

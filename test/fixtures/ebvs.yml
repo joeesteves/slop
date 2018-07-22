@@ -1,0 +1,69 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-10-27
+  nacdird: 9.99
+  nacdirp: 9.99
+  nacmatd: 9.99
+  nacmatp: 9.99
+  dttdird: 9.99
+  dttdirp: 9.99
+  dttmatd: 9.99
+  dttmatp: 9.99
+  pasoad: 9.99
+  pesoap: 9.99
+  pesoaymd: 9.99
+  pesoaymp: 9.99
+  pesoadd: 9.99
+  pesoadp: 9.99
+  gdpd: 9.99
+  gdpp: 9.99
+  icad: 9.99
+  icap: 9.99
+  consumod: 9.99
+  consumop: 9.99
+  irfd: 9.99
+  irfp: 9.99
+  althd: 9.99
+  althp: 9.99
+  largod: 9.99
+  largop: 9.99
+  ctd: 9.99
+  ctp: 9.99
+  ced: 9.99
+  cep: 9.99
+  animal_id: 
+
+two:
+  fecha: 2013-10-27
+  nacdird: 9.99
+  nacdirp: 9.99
+  nacmatd: 9.99
+  nacmatp: 9.99
+  dttdird: 9.99
+  dttdirp: 9.99
+  dttmatd: 9.99
+  dttmatp: 9.99
+  pasoad: 9.99
+  pesoap: 9.99
+  pesoaymd: 9.99
+  pesoaymp: 9.99
+  pesoadd: 9.99
+  pesoadp: 9.99
+  gdpd: 9.99
+  gdpp: 9.99
+  icad: 9.99
+  icap: 9.99
+  consumod: 9.99
+  consumop: 9.99
+  irfd: 9.99
+  irfp: 9.99
+  althd: 9.99
+  althp: 9.99
+  largod: 9.99
+  largop: 9.99
+  ctd: 9.99
+  ctp: 9.99
+  ced: 9.99
+  cep: 9.99
+  animal_id: 

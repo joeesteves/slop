@@ -1,0 +1,26 @@
+<% if [1,2,0].include?(@codigo) %>
+	$('#divApp').hide()
+	$('#divIva').show()
+	$('#divOp').removeClass("small-4 columns")
+	$('#divOp').addClass("small-6 columns")
+	$('.iva').show()
+	$('#divImp').removeClass("small-5 columns")
+	$('#divImp').addClass("small-1 columns")
+	$('#transaccion_rmensuales').removeAttr("disabled")
+
+<% elsif [3,4].include?(@codigo) %>
+	$('#divOp').removeClass("small-6 columns")
+	$('#divOp').addClass("small-4 columns")
+	$('#divApp').show()
+	$('#divIva').hide()
+	$('#transaccion_civa').val("false")
+	$('.iva').hide()
+	$('#divImp').removeClass("small-1 columns")
+	$('#divImp').addClass("small-5 columns")
+	$('#transaccion_rmensuales').attr("disabled", "disabled")
+<% else %>
+<%end%>
+$('#codigo').val(<%= @codigo %>)
+
+
+

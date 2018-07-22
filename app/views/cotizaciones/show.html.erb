@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @cotizacion.fecha.strftime('%d/%m/%Y') %>
+</p>
+
+<p>
+  <strong>Cotizacion:</strong>
+  <%= @cotizacion.cotizacion %>
+</p>
+
+<p>
+  <strong>Moneda:</strong>
+  <%= @cotizacion.moneda.nombre %>
+</p>
+
+<%= link_to 'Edit', edit_cotizacion_path(@cotizacion) %> |
+

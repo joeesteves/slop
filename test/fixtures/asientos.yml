@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2013-08-16
+  debe: 9.99
+  haber: 9.99
+  cuenta_id: 
+  transaccion_id: 
+  cuota_id: 
+
+two:
+  fecha: 2013-08-16
+  debe: 9.99
+  haber: 9.99
+  cuenta_id: 
+  transaccion_id: 
+  cuota_id: 
